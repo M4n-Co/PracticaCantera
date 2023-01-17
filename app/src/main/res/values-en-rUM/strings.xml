@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Select Avatar</string>
+    <string name="titulo">Select your avatar</string>
+    <string name="tv_colores">Choose a color</string>
+    <string name="eth_user_name">Write your username</string>
+    <string name="b_listo">Finish</string>
+    <string name="notific_nombre">Please enter your username</string>
+    <string name="tituloSA">Welcome</string>
+    <string name="tv_ramdom_user">Suggest username</string>
+    <string name="descrip_cardview">Descrip</string>
+</resources>

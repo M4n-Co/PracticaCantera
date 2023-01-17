@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Select Avatar</string>
+
+    <string name="titulo">Escoge tu avatar</string>
+    <string name="tv_colores">Elije un color de fondo</string>
+    <string name="eth_user_name">Escribe tu nombre de usuario</string>
+    <string name="b_listo">Listo</string>
+    <string name="tv_ramdom_user">Select Avatar</string>
+    <string name="notific_nombre">El campo nombre esta vacio</string>
+    <string name="tituloSA">Bienvenido</string>
+    <string name="descrip_cardview">Descrip</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

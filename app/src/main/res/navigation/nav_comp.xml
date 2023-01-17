@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_comp"
+    app:startDestination="@id/fSelectAvatar">
+
+    <fragment
+        android:id="@+id/fSelectAvatar"
+        android:name="com.example.selectavatar.fSelectAvatar"
+        android:label="fragment_f_select_avatar"
+        tools:layout="@layout/fragment_f_select_avatar" >
+        <action
+            android:id="@+id/fSelectTofPerfil"
+            app:destination="@id/fPerfil" />
+    </fragment>
+    <fragment
+        android:id="@+id/fPerfil"
+        android:name="com.example.selectavatar.fPerfil"
+        android:label="fragment_f_perfil"
+        tools:layout="@layout/fragment_f_perfil" />
+</navigation>
