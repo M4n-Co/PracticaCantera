@@ -1,12 +1,14 @@
 package com.example.selectavatar
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlin.collections.ArrayList
@@ -15,6 +17,7 @@ class AdaptadorCol(private val onClickListener: (AvatarColor) -> Unit) : Recycle
 
     var colores : MutableList<AvatarColor> = ArrayList()
     var posicionMarcada = 0
+    var context : Context? = null
 
     @SuppressLint("NotConstructor")
     fun AdaptadorCol (lista: MutableList<AvatarColor>){
@@ -23,6 +26,7 @@ class AdaptadorCol(private val onClickListener: (AvatarColor) -> Unit) : Recycle
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
+        context = parent.context
         return ViewHolder(layoutInflater.inflate(R.layout.elemento_rv, parent, false))
     }
 
@@ -38,9 +42,9 @@ class AdaptadorCol(private val onClickListener: (AvatarColor) -> Unit) : Recycle
             onClickListener(color)
         }
         if(posicionMarcada == position){
-            cvAvatar.setCardBackgroundColor(Color.CYAN)
+            cvAvatar.setCardBackgroundColor(ContextCompat.getColor(context!!,R.color.selector_color))
         }else{
-            cvAvatar.setCardBackgroundColor(Color.WHITE)
+            cvAvatar.setCardBackgroundColor(ContextCompat.getColor(context!!,R.color.white))
         }
     }
 
@@ -55,7 +59,5 @@ class AdaptadorCol(private val onClickListener: (AvatarColor) -> Unit) : Recycle
             imColor.layoutParams = params
             imColor.setImageResource(color.imagen)
         }
-
     }
-
 }

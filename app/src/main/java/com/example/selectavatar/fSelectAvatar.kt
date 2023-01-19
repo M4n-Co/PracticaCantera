@@ -8,9 +8,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.selectavatar.databinding.FragmentFSelectAvatarBinding
+import kotlinx.coroutines.launch
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class fSelectAvatar : Fragment() {
@@ -19,11 +24,11 @@ class fSelectAvatar : Fragment() {
         const val NOMBRE_USUARIO = "nombreUsuario"
         const val IM_AVATAR = "imAvatarC"
         const val IM_FONDO = "imColorC"
-
     }
 
     lateinit var _binding : FragmentFSelectAvatarBinding
     val binding: FragmentFSelectAvatarBinding get() = _binding
+    private val Nombres = mutableListOf<String>()
 
     private val adaptadorCol : AdaptadorCol = AdaptadorCol {color -> onItemSelectedColor(color)}
     private val adaptadorAva : AdaptadorAva = AdaptadorAva {avatar -> onItemSelectedAvatar(avatar)}
@@ -45,6 +50,10 @@ class fSelectAvatar : Fragment() {
 
         crearRVAvatar()
         crearRVColor()
+
+        binding.tvSugerirU.setOnClickListener {
+            generarNombre()
+        }
 
         binding.bListo.setOnClickListener {
             if ( !binding.etNombreU.text!!.isEmpty() ){
@@ -105,5 +114,25 @@ class fSelectAvatar : Fragment() {
         colors.add(AvatarColor(R.color.background_avatar_6))
 
         return colors
+    }
+    private fun getRetrofit(): Retrofit {
+        return Retrofit.Builder()
+            .baseUrl("https://names.drycodes.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+    }
+    private fun generarNombre(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            val call: Response<List<String>> = getRetrofit().create(APIService::class.java).userRandom()
+            val lNombres : List<String>? = call.body()
+            if(call.isSuccessful){
+                val nombres : List<String> = lNombres ?: emptyList()
+                Nombres.clear()
+                Nombres.addAll(nombres)
+                binding.etNombreU.setText(Nombres[0])
+            }else{
+                Toast.makeText(activity,"Fallo",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 }

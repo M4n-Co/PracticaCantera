@@ -1,12 +1,12 @@
 package com.example.selectavatar
 
 import android.annotation.SuppressLint
-import android.graphics.Color
-import android.graphics.Color.WHITE
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -14,6 +14,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 class AdaptadorAva (private val onClickListener: (AvatarColor) -> Unit): RecyclerView.Adapter<AdaptadorAva.ViewHolder>() {
     var avatars : MutableList<AvatarColor> = ArrayList()
     var posicionMarcada = 0
+    var context : Context? = null
 
     @SuppressLint("NotConstructor")
     fun AdaptadorAva (lista: MutableList<AvatarColor>){
@@ -22,6 +23,7 @@ class AdaptadorAva (private val onClickListener: (AvatarColor) -> Unit): Recycle
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
+        context = parent.context
         return ViewHolder(layoutInflater.inflate(R.layout.elemento_rv, parent, false))
     }
 
@@ -37,9 +39,9 @@ class AdaptadorAva (private val onClickListener: (AvatarColor) -> Unit): Recycle
             onClickListener(avatar)
         }
         if(posicionMarcada == position){
-            cvAvatar.setCardBackgroundColor(Color.CYAN)
+            cvAvatar.setCardBackgroundColor(ContextCompat.getColor(context!!,R.color.selector_color))
         }else{
-            cvAvatar.setCardBackgroundColor(WHITE)
+            cvAvatar.setCardBackgroundColor(ContextCompat.getColor(context!!,R.color.white))
         }
     }
 

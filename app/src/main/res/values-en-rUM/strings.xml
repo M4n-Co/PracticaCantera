@@ -6,7 +6,7 @@
     <string name="eth_user_name">Write your username</string>
     <string name="b_listo">Finish</string>
     <string name="notific_nombre">Please enter your username</string>
-    <string name="tituloSA">Welcome</string>
-    <string name="tv_ramdom_user">Suggest username</string>
+    <string name="tituloSA">Welcome:</string>
+    <string name="tv_ramdom_user"><U>Suggest username</U></string>
     <string name="descrip_cardview">Descrip</string>
 </resources>
